@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="proWeb.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <p>Rocío García Robles - 53247879G </p>
+        Daniela Pedroche van Deurzen - 48800401J
+        <div style="background-color: #ff6a00">
+            <h1>&nbsp;</h1>
+            <center><h1>HADA P3 - CURSO 2023-2024</h1></center>
+            <p>&nbsp;</p>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
+//Falta saber el color si tiene que ser el mismo que pone en la web

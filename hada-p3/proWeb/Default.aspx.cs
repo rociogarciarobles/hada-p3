@@ -13,5 +13,15 @@ namespace proWeb
         {
 
         }
+
+        protected void Category_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

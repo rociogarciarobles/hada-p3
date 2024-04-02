@@ -11,7 +11,7 @@ namespace library
         private string _code;
         private string _name;
         private int _amount;
-        private double _price;
+        private float _price;
         private DateTime _creationDate;
 
         public string code
@@ -41,15 +41,15 @@ namespace library
                     _amount = 0;
             }
         }
-        public double price
+        public float price
         {
             get { return _price; }
             set
             {
-                if (value > 0.0)
+                if (value > 0)
                     _price = value;
                 else
-                    _price = 0.0;
+                    _price = 0;
             }
         }
         public DateTime CreationDate

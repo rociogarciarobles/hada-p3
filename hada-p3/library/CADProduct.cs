@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 
 namespace library
 {
@@ -21,7 +14,7 @@ namespace library
         public bool Create(ENProduct en)
         {
             SqlConnection conexion = new SqlConnection(constring);
-            string comando = "Insert Into Products (code, name, amount) " + "VALUES ('" + en.code + "', '" + en.name + "', '" + en.amount + "')";
+            string comando = "Insert Into Products (code, name, amount, price, creationDate, category) " + "VALUES ('" + en.code + "', '" + en.name + "', '" + en.amount + "', '" + en.price + "','" + en.creationDate + "','" + en.category + "')";
             try
             {
                 conexion.Open();
@@ -52,6 +45,9 @@ namespace library
                     en.name = dr["name"].ToString();
                     en.code = dr["code"].ToString();
                     en.amount = int.Parse(dr["amount"].ToString());
+                    en.price = float.Parse(dr["price"].ToString());
+                    en.creationDate = DateTime.Parse(dr["creationDate"].ToString());
+                    en.category = int.Parse(dr["category"].ToString());
                     dr.Close();
                     conexion.Close();
                     return true;
@@ -77,6 +73,9 @@ namespace library
                 en.amount = int.Parse(datareader["amount"].ToString());
                 en.name = datareader["name"].ToString();
                 en.code = datareader["code"].ToString();
+                en.price = float.Parse(datareader["price"].ToString());
+                en.creationDate = DateTime.Parse(datareader["creationDate"].ToString());
+                en.category = int.Parse(datareader["category"].ToString());
                 conexion.Close();
                 return true;
             }
@@ -107,6 +106,9 @@ namespace library
                         en.amount = int.Parse(datareader["amount"].ToString());
                         en.name = datareader["name"].ToString();
                         en.code = datareader["code"].ToString();
+                        en.price = float.Parse(datareader["price"].ToString());
+                        en.creationDate = DateTime.Parse(datareader["creationDate"].ToString());
+                        en.category = int.Parse(datareader["category"].ToString());
                         conexion.Close();
                         return true;
                     }
@@ -137,21 +139,27 @@ namespace library
                 conexion.Open();
                 SqlCommand comando = new SqlCommand(s, conexion);
                 SqlDataReader datareader = comando.ExecuteReader();
-                ENProduct usu = new ENProduct();
+                ENProduct pro = new ENProduct();
                 while (datareader.Read())
                 {
                     if (datareader["code"].ToString() == en.code.ToString())
                     {
-                        en.amount = usu.amount;
-                        en.name = usu.name;
-                        en.code = usu.code;
+                        en.amount = pro.amount;
+                        en.name = pro.name;
+                        en.code = pro.code;
+                        en.price = pro.price;
+                        en.creationDate = pro.creationDate;
+                        en.category = en.category;
                         return true;
                     }
                     else
                     {
-                        usu.amount = int.Parse(datareader["amount"].ToString());
-                        usu.name = datareader["name"].ToString();
-                        usu.code = datareader["code"].ToString();
+                        pro.amount = int.Parse(datareader["amount"].ToString());
+                        pro.name = datareader["name"].ToString();
+                        pro.code = datareader["code"].ToString();
+                        pro.price = int.Parse(datareader["price"].ToString());
+                        pro.creationDate = DateTime.Parse(datareader["creationDate"].ToString());
+                        pro.category = int.Parse(datareader["category"].ToString());
                     }
                 }
             }
@@ -170,7 +178,7 @@ namespace library
         public bool Update(ENProduct en)
         {
             SqlConnection conexion = new SqlConnection(constring);
-            string s = "UPDATE [dbo].[Products] " + "SET name = '" + en.name + "',  amount = " + en.amount + "where code ='" + en.code + "'";
+            string s = "UPDATE [dbo].[Products] " + "SET name = '" + en.name + "',  amount = " + en.amount + "',  price = " + en.price + "',  creationDAte = " + en.creationDate + "',  category = " + en.category + "where code ='" + en.code + "'";
             try
             {
                 conexion.Open();

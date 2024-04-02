@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace library
 {
@@ -13,6 +9,7 @@ namespace library
         private int _amount;
         private float _price;
         private DateTime _creationDate;
+        private int _category;
 
         public string code
         {
@@ -52,22 +49,36 @@ namespace library
                     _price = 0;
             }
         }
-        public DateTime CreationDate
+        public DateTime creationDate
         {
             get => _creationDate;
-            set => _creationDate = value; 
+            set => _creationDate = value;
+        }
+        public int category
+        {
+            get { return _category; }
+            set
+            {
+                _category = value;
+            }
         }
         public ENProduct()
         {
             code = null;
             name = null;
             amount = 0;
+            price = 0;
+            creationDate = DateTime.MinValue;
+            category = 0;
         }
-        public ENProduct(string code, string name, int amount)
+        public ENProduct(string code, string name, int amount, float price, DateTime creationDate, int category)
         {
             this.code = code;
             this.name = name;
             this.amount = amount;
+            this.price = price;
+            this.creationDate = creationDate;
+            this.category = category;
         }
         public bool Create()
         {
